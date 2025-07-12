@@ -469,6 +469,56 @@
         📱
     </a>
 
+    <!-- Popup WhatsApp -->
+    <div class="whatsapp-popup" id="whatsappPopup">
+        <div class="popup-header">
+            <div class="popup-avatar">
+                🏖️
+                <div class="online-indicator"></div>
+            </div>
+            <div class="popup-info">
+                <h4 class="popup-name">GI Turismo</h4>
+                <p class="popup-status">Online agora</p>
+            </div>
+            <button class="popup-close" onclick="closePopup()">×</button>
+        </div>
+        
+        <div class="popup-body">
+            <div class="message-bubble">
+                <p class="message-text">
+                    Olá! 👋 Que tal descobrir João Pessoa com nossos roteiros exclusivos? 
+                    Temos promoções especiais para este mês! 🌴
+                </p>
+                <div class="message-time">agora</div>
+            </div>
+            
+            <div class="typing-indicator">
+                <span>Digitando</span>
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+            
+            <div class="popup-actions">
+                <a href="https://wa.me/5511999999999?text=Olá! Vi o popup e gostaria de saber mais sobre os pacotes para João Pessoa!" 
+                   class="popup-btn primary" target="_blank">
+                    💬 Responder
+                </a>
+                <button class="popup-btn secondary" onclick="closePopup()">
+                    ⏰ Depois
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão WhatsApp flutuante -->
+    <a href="https://wa.me/5511999999999?text=Olá! Vim pelo site e quero saber mais sobre os pacotes!" 
+       class="floating-whatsapp" title="Falar no WhatsApp">
+        📱
+    </a>
+
     <script>
         // Carousel functionality
         let currentSlideIndex = 0;
@@ -591,6 +641,111 @@
         // Observe all destination cards and features
         document.querySelectorAll('.destination-card, .feature').forEach(el => {
             observer.observe(el);
+        });
+
+        // Variáveis para controlar o popup
+        let popupInterval;
+        let hasShownFirstTime = false;
+        
+        // Função para mostrar o popup
+        function showWhatsAppPopup() {
+            const popup = document.getElementById('whatsappPopup');
+            if (popup) {
+                popup.classList.add('show');
+                hasShownFirstTime = true;
+                
+                // Auto-fechar após 15 segundos se não houver interação
+                setTimeout(() => {
+                    if (popup.classList.contains('show')) {
+                        closePopup();
+                    }
+                }, 15000);
+            }
+        }
+
+        // Função para fechar o popup
+        function closePopup() {
+            const popup = document.getElementById('whatsappPopup');
+            if (popup) {
+                popup.classList.remove('show');
+                popup.classList.add('hide');
+                
+                // Remover classe hide após animação
+                setTimeout(() => {
+                    popup.classList.remove('hide');
+                }, 300);
+                
+                // Se já foi mostrado pela primeira vez, configurar intervalo de 1 minuto
+                if (hasShownFirstTime) {
+                    startPopupInterval();
+                }
+            }
+        }
+
+        // Função para iniciar o intervalo de 1 minuto
+        function startPopupInterval() {
+            // Limpar qualquer intervalo anterior
+            if (popupInterval) {
+                clearInterval(popupInterval);
+            }
+            
+            // Configurar novo intervalo de 1 minuto (60000 ms)
+            popupInterval = setInterval(() => {
+                showWhatsAppPopup();
+            }, 60000);
+        }
+
+        // Função para reabrir o popup ao clicar no botão flutuante
+        function reopenPopup() {
+            const popup = document.getElementById('whatsappPopup');
+            if (popup && !popup.classList.contains('show')) {
+                showWhatsAppPopup();
+            }
+        }
+
+        // Função para parar o intervalo (útil se o usuário responder)
+        function stopPopupInterval() {
+            if (popupInterval) {
+                clearInterval(popupInterval);
+                popupInterval = null;
+            }
+        }
+
+        // Inicializar o popup após 7 segundos (primeira vez)
+        setTimeout(showWhatsAppPopup, 7000);
+
+        // Adicionar evento de clique no botão flutuante para reabrir popup
+        document.querySelector('.floating-whatsapp').addEventListener('click', (e) => {
+            e.preventDefault();
+            reopenPopup();
+        });
+
+        // Fechar popup ao clicar fora dele
+        document.addEventListener('click', (e) => {
+            const popup = document.getElementById('whatsappPopup');
+            if (popup && popup.classList.contains('show') && !popup.contains(e.target)) {
+                closePopup();
+            }
+        });
+
+        // Prevenir fechamento ao clicar dentro do popup
+        document.getElementById('whatsappPopup').addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Parar o intervalo quando o usuário clicar no botão "Responder"
+        document.querySelector('.popup-btn.primary').addEventListener('click', () => {
+            stopPopupInterval();
+        });
+
+        // Opcional: Parar o intervalo quando a página perder o foco (usuário saiu da aba)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopPopupInterval();
+            } else if (hasShownFirstTime) {
+                // Reiniciar o intervalo quando voltar à aba
+                startPopupInterval();
+            }
         });
     </script>
 </body>
