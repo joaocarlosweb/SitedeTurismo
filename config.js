@@ -30,7 +30,7 @@ function currentSlide(index) {
 }
 
 // Auto-advance carousel
-setInterval(nextSlide, 5000);
+setInterval(nextSlide, 6000);
 
 // Video modal functionality
 function playVideo(videoId) {
@@ -38,14 +38,29 @@ function playVideo(videoId) {
     const videoContent = document.getElementById('videoContent');
     
     const videos = {
-        1: 'Vídeo de Fernando de Noronha\n\n🎬 Aqui seria exibido um vídeo real mostrando:\n• Mergulho com golfinhos\n• Praias cristalinas\n• Pores do sol espetaculares\n• Depoimentos dos clientes',
-        2: 'Vídeo da Chapada Diamantina\n\n🎬 Aqui seria exibido um vídeo real mostrando:\n• Trilhas e cachoeiras\n• Paisagens deslumbrantes\n• Aventuras radicais\n• Momentos únicos dos visitantes',
-        3: 'Vídeo dos Lençóis Maranhenses\n\n🎬 Aqui seria exibido um vídeo real mostrando:\n• Dunas e lagoas cristalinas\n• Voos de drone\n• Experiências únicas\n• Testemunhos emocionantes',
-        4: 'Vídeo de Jericoacoara\n\n🎬 Aqui seria exibido um vídeo real mostrando:\n• Pôr do sol na Pedra Furada\n• Kitesurf e windsurf\n• Buggy nas dunas\n• Momentos mágicos dos clientes',
-        5: 'Vídeo do Pantanal\n\n🎬 Aqui seria exibido um vídeo real mostrando:\n• Safari fotográfico\n• Onças e vida selvagem\n• Pescarias esportivas\n• Aventuras inesquecíveis'
+        1: `<video controls autoplay>
+            <source src="depimento0.mp4" type="video/mp4">
+            Seu navegador não suporta o vídeo.
+        </video>`,
+        2: `<video controls autoplay>
+            <source src="depoimento1.mp4" type="video/mp4">
+            Seu navegador não suporta o vídeo.
+        </video>`,
+        3: `<video controls autoplay>
+            <source src="depoimento2.mp4" type="video/mp4">
+            Seu navegador não suporta o vídeo.
+        </video>`,
+        4: `<video controls autoplay>
+            <source src="depoimento3.mp4" type="video/mp4">
+            Seu navegador não suporta o vídeo.
+        </video>`,
+        5: `<video controls autoplay>
+            <source src="depoimento4.mp4" type="video/mp4">
+            Seu navegador não suporta o vídeo.
+        </video>`
     };
     
-    videoContent.textContent = videos[videoId] || 'Vídeo não encontrado';
+    videoContent.innerHTML = videos[videoId] || '<p>Vídeo não encontrado</p>';
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -79,8 +94,11 @@ function closeVideoModal() {
     if (modal) {
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
+        const videoContent = document.getElementById('videoContent');
+        if (videoContent) videoContent.innerHTML = ''; // limpa vídeo
     }
 }
+
 
 // Close modal with Escape key
 document.addEventListener('keydown', (e) => {
@@ -171,7 +189,7 @@ function startPopupInterval() {
     // Configurar novo intervalo de 1 minuto (60000 ms)
     popupInterval = setInterval(() => {
         showWhatsAppPopup();
-    }, 60000);
+    }, 60300);
 }
 
 // Função para reabrir o popup ao clicar no botão flutuante
