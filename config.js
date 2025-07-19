@@ -209,7 +209,7 @@ function stopPopupInterval() {
 }
 
 // Inicializar o popup após 7 segundos (primeira vez)
-setTimeout(showWhatsAppPopup, 7000);
+setTimeout(showWhatsAppPopup, 15000);
 
 // Adicionar evento de clique no botão flutuante para reabrir popup
 document.querySelector('.floating-whatsapp').addEventListener('click', (e) => {
@@ -244,3 +244,16 @@ document.addEventListener('visibilitychange', () => {
         startPopupInterval();
     }
 });
+
+
+// Mostrar banner se ainda não aceitou
+  window.onload = function () {
+    if (!localStorage.getItem("cookiesAceitos")) {
+      document.getElementById("cookie-banner").classList.remove("hidden");
+    }
+  };
+
+  function aceitarCookies() {
+    localStorage.setItem("cookiesAceitos", "true");
+    document.getElementById("cookie-banner").classList.add("hidden");
+  }
