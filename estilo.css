@@ -261,7 +261,7 @@ section {
     height: 200px;
     position: relative;
     overflow: hidden;
-    object-fit: cover;
+    
 }
 
 .destination-image p {
@@ -277,14 +277,27 @@ section {
     z-index: 1;
 
 }
+
+.destination-image img {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    bottom: 10px;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    
+
+}
+
 .destination-image::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:rgb(rgb(234, 48, 178));
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
     opacity: 0.8;
 }
 
