@@ -76,6 +76,7 @@ nav {
     display: flex;
     list-style: none;
     gap: 2rem;
+    font-size: 21px;
     
 }
 
@@ -1358,6 +1359,7 @@ footer {
 
     .titulo {
         display: block;
+        font-size: 16px;
     }
 
     .hero h1 {
@@ -1399,8 +1401,8 @@ footer {
         background: rgba(214, 24, 176, 0.95);
         height: 14px;
     }
-    .titulo h1{
-        font-size: 15px;
+    .titulo{
+        font-size: 12px;
     }
     .whatsapp-btn{
         font-size: 14px;
@@ -1422,7 +1424,7 @@ footer {
             width: auto;
             height: 78vh;
             font-size: 1rem;
-        }
+    }
     
 }
 
