@@ -209,6 +209,24 @@ nav {
     transform: translateY(-3px);
 }
 
+.social-icons {
+  margin-top: 45px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icons a img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s ease;
+}
+
+.social-icons a:hover img {
+  transform: scale(1.15);
+}
+
+
 /* Sections */
 section {
     padding: 5rem 5%;
