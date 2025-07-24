@@ -32,7 +32,7 @@ body {
 header {
     position: fixed;
     width: 100%;
-    height: 120px;
+    height: 115px;
     background-color: oklch(63.129% 0.26149 338.609 / 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
@@ -50,7 +50,6 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -1370,6 +1369,9 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    header {
+        height: 80px;
+    }
     .nav-links {
         display:none;
     }
