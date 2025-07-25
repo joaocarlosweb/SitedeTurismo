@@ -257,3 +257,5 @@ document.addEventListener('visibilitychange', () => {
     localStorage.setItem("cookiesAceitos", "true");
     document.getElementById("cookie-banner").classList.add("hidden");
   }
+
+  

@@ -867,7 +867,6 @@ section {
   padding: 60px 20px;
   background-color: #f8f8f8;
   text-align: center;
-  
 }
 
 .video-carousel {
@@ -907,7 +906,6 @@ section {
 .video-card:hover {
   transform: scale(1.05);
 }
-
 
 /* Footer */
 footer {
